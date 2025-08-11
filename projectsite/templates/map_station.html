@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+<div class="page-inner">
+  <div class="page-header">
+    <h4 class="page-title">Dashboard</h4>
+    <ul class="breadcrumbs">
+      <li class="nav-home">
+        <a href="">
+          <i class="flaticon-home"></i>
+        </a>
+      </li>
+      <li class="separator">
+        <i class="flaticon-right-arrow"></i>
+      </li>
+      <li class="nav-item">
+        <a href="#">Maps</a>
+      </li>
+      <li class="separator">
+        <i class="flaticon-right-arrow"></i>
+      </li>
+      <li class="nav-item">
+        <a href="">Stations</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-12">
+    <div class="card card-transparent">
+      <div class="card-header ">
+        <h4 class="card-title text-center">Fire Stations</h4>     
+      </div>
+  <div class="card-body">
+    <div class="d-flex justify-content-center">
+      <div style="max-width: 100%; margin: 0 auto;">
+        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1OY4u_lUZdOt240hhSpip4PGGyIGXmOQ&ehbc=2E312F" width="900"
+          height="700" style="border: 0; display: block;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    var map = L.map("map").setView([9.81644, 118.722391], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var truckIcon = L.icon({
+    iconUrl: "{% static 'img/firetruck.png' %}",
+    iconSize: [50, 50]
+    });
+
+  // Example marker using truck icon
+    L.marker([9.83369118406607, 118.72275445554], { icon: truckIcon }).addTo(map)
+        .bindPopup("Sta. Lourdes");
+
+    L.marker([9.82084079557777, 118.74401369655], { icon: truckIcon }).addTo(map)
+        .bindPopup("Tagburos");
+
+    L.marker([9.79555573875096, 118.710565836493], { icon: truckIcon }).addTo(map)
+        .bindPopup("Sicsican");
+
+</script>
+
+{% endblock %}
